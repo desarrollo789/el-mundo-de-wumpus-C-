@@ -33,13 +33,14 @@ namespace elmundodewumpussolution.Clases
             this.exit[0] = a;
             this.exit[1] = b;
         }
-        
-        public bool pit = false;
+
+        public bool brisa = false;
+        public bool hueco = false;
         public bool slime = false;
         public bool bat = false;
         public bool Hunter = false;
         public bool wumpus = false;
-        public bool blood = false;
+        public bool hedor = false;
         public bool arrow = false;
     }
 }

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Extras.cs" />
     <Compile Include="Clases\Location.cs" />
     <Compile Include="Clases\MundodelAgente.cs" />
     <Compile Include="Program.cs" />
