@@ -131,6 +131,7 @@ namespace elmundodewumpussolution
             int[] BloodRoomsTier1 = new int[3];
             int[] BloodRoomsTier2 = new int[3];
             int[] Wumpus = new int[1];
+            int[] Oro = new int[3];
             //I now put the wumpus into a room. I use a function called SetUpIndex. Please refer to this fn for explanation.I then set the boolean for the wumpus for that cave
             //to true.
             //Wumpus[0] = SetUpIndex(ref HunterRoomNumber, ref MaxNoOfRooms,ref RoomNumberBats,ref Wumpus, ref NumberRoomsPit);
@@ -159,7 +160,33 @@ namespace elmundodewumpussolution
                     LocationParameters[LocationParameters[Wumpus[i]].exit[q]].hedor = true;
                 }
             }
+            for (int i = 0; i > 3; i++)
+            {
+                Oro[i] = Clases.Extras.AsignacionRandimico(ref indexini, ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                LocationParameters[Oro[i]].brillo = true;
+                for (int q = 0; q < (LocationParameters[Oro[i]].exit.Length); q++)
+                {
+                    LocationParameters[LocationParameters[Oro[i]].exit[q]].brillo = true;
+                }
+            }
             //This while loop runs for the duration of the game. When Game is set to false, the game terminates.
+            //that they can smell the wumpus,hear bats, detect slime or as in the case of blood, the wumpus is two rooms away.
+            for (int i = 0; i < LocationParameters[AgenteRoomNumber].exit.Length; i++)
+            {
+                if (LocationParameters[LocationParameters[AgenteRoomNumber].exit[i]].brisa == true)
+                {
+                    Console.WriteLine("Puedes sentir el viento");
+                }
+                if (LocationParameters[LocationParameters[AgenteRoomNumber].exit[i]].hedor == true)
+                {
+                    Console.WriteLine("Puedes percibir un hedor");
+                }
+                if (LocationParameters[LocationParameters[AgenteRoomNumber].exit[i]].brillo == true)
+                {
+                    Console.WriteLine("Puedes notar un brillo");
+                }
+            }
+            //Pregunta el juegador que desa hacer. Preciona 1 y anter para moverse o 2 y enter para disparar flecha.
 
         }
     }

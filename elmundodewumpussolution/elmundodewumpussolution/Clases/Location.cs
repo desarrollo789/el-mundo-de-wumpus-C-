@@ -42,5 +42,6 @@ namespace elmundodewumpussolution.Clases
         public bool wumpus = false;
         public bool hedor = false;
         public bool arrow = false;
+        public bool brillo = false;
     }
 }
