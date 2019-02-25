@@ -6,23 +6,69 @@ using System.Threading.Tasks;
 
 namespace elmundodewumpussolution
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
-        {
-            //Aqui es donde inicia el prgrama
-            //Definiendo parametros
-            bool Game = true;
-            int indexini = 6; int indexend = 7;
-            int NroWump = 2;
-            int NroFlech = 2;
-            int a = 0, b = 0, c = 0, d = 0;
-            int MaxnrodeRooms = 36;
-            //Please refer to the Cave class setup after class program. I now setup an array CaveSystem of objects of class Cave. the default id 36 rooms for easy.
-            Clases.Location[] LocationParameters = new Clases.Location[MaxnrodeRooms];
-            //Esta varieble se refiere a la temperatura para los murcielagos
-            int TemperaturaLocation = 4;
+        //Please refer to the Cave class setup after class program. I now setup an array CaveSystem of objects of class Cave. the default id 36 rooms for easy.
+        Clases.Location[] LocationParameters;
+        int MaxnrodeRooms;
+        //Aqui es donde inicia el prgrama
+        //Definiendo parametros
+        bool Game = true;
+        int indexini = 0; int indexend = 7;
+        int NroWump = 2;
+        int NroFlech = 2;
+        int a, b, c, d;
+        //I initially place the hunter in room 6,HunterRoomNumber = 6; the bats in room 7. Please note i set the boolean for each object to true. So for room or cave 6
+        //i reference that cave vis CaveSystem ans set the booleanHunter = true. Likewise for the bats. 
+        int AgenteRoomNumber;        
+        int MucielagosRoomNumeber;        
+        //I use an array NumberRoomsPit = new int[2] which the contains the room numbers of the rooms with a pit in the game. BloodRoomsTier1 & 2 are arrays i set up
+        //previously but are now reduntant.Wumpus is an array which contains the room numbers of the wumpi, however i only have one wumpus in the game as set out in
+        //the spec; so i just use Wumpus[0]; however i set all the code and functions to use the array so i just left it as is.
+        int[] HuecoRoomsNumbers;
+        int[] BloodRoomsTier1 ;
+        int[] BloodRoomsTier2 ;
+        int[] Wumpus;
+        int[] Oro;
 
+        //Esta varieble se refiere a la temperatura para los murcielagos
+        int TemperaturaLocation = 4;
+        public Program()
+        {
+            LocationParameters = new Clases.Location[MaxnrodeRooms];
+            MaxnrodeRooms = 36;
+            Game = true;
+            indexini = 0; indexend = 7;
+            NroWump = 1;
+            NroFlech = 1;
+            a = 0;
+            b = 0;
+            c = 0;
+            d = 0;
+            HuecoRoomsNumbers = new int[3];
+            BloodRoomsTier1 = new int[3];
+            BloodRoomsTier2 = new int[3];
+            Wumpus = new int[1];
+            Oro = new int[3];
+        }
+        public void RemoveWumpus(ref int[] Wumpus)
+        {
+            //Since  i am going to move the wumpus, i first turn the blood boolean to false in all the effected objects. I do this in the first for loop
+            //Then i move the wumpus to a adjacent room using the next for loop. Then when the wumpus has moved i set the blood boolean to true for the relevant rooms.           
+
+            for (int i = 0; i < 1; i++)
+            {
+                Wumpus[0] = Clases.Extras.AsignacionRandimico(ref AgenteRoomNumber, ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                //CaveSystem[Wumpus[i]].wumpus = true;
+                LocationParameters[Wumpus[i]].wumpus = false;
+                for (int q = 0; q < (LocationParameters[Wumpus[i]].exit.Length); q++)
+                {
+                    LocationParameters[LocationParameters[Wumpus[i]].exit[q]].hedor = false;
+                }
+            }            
+        }
+        private void Main(string[] args)
+        {                        
             Console.WriteLine("Bienvenido a WunpusGame, exiten tres niveles de dificultad: Estan Facil, Medio and Pesadilla;/n En Fasil existen 36 espacios, un Wumpus 'Si no sabes que es Wumpus es un monstruo' y una colonia de murcielagos; /n Medio son 28 espacios, un Wunpus y una colinia de murcielagos; /n En pesadilla son 16 espacios, un wumpus y una colonia de murcielagos; /n Los murcielagos son mas agrecivos a medida que se aumenta el nivel; /n Enter & return para medio matener p para pesadilla; default es Facil");
             //I use the console application to output a introduction and receive input from the player. 
             string input = Console.ReadLine();
@@ -118,20 +164,7 @@ namespace elmundodewumpussolution
             LocationParameters[34] = new Clases.Location(a = 28, b = 33, c = 35);
             LocationParameters[35] = new Clases.Location(a = 29, b = 34);
 
-            //I initially place the hunter in room 6,HunterRoomNumber = 6; the bats in room 7. Please note i set the boolean for each object to true. So for room or cave 6
-            //i reference that cave vis CaveSystem ans set the booleanHunter = true. Likewise for the bats. 
-            int AgenteRoomNumber = 6;
-            LocationParameters[AgenteRoomNumber].Hunter = true;
-            int MucielagosRoomNumeber = 7;
-            LocationParameters[MucielagosRoomNumeber].bat = true;
-            //I use an array NumberRoomsPit = new int[2] which the contains the room numbers of the rooms with a pit in the game. BloodRoomsTier1 & 2 are arrays i set up
-            //previously but are now reduntant.Wumpus is an array which contains the room numbers of the wumpi, however i only have one wumpus in the game as set out in
-            //the spec; so i just use Wumpus[0]; however i set all the code and functions to use the array so i just left it as is.
-            int[] HuecoRoomsNumbers = new int[3];
-            int[] BloodRoomsTier1 = new int[3];
-            int[] BloodRoomsTier2 = new int[3];
-            int[] Wumpus = new int[1];
-            int[] Oro = new int[3];
+            
             //I now put the wumpus into a room. I use a function called SetUpIndex. Please refer to this fn for explanation.I then set the boolean for the wumpus for that cave
             //to true.
             //Wumpus[0] = SetUpIndex(ref HunterRoomNumber, ref MaxNoOfRooms,ref RoomNumberBats,ref Wumpus, ref NumberRoomsPit);
@@ -171,23 +204,66 @@ namespace elmundodewumpussolution
             }
             //This while loop runs for the duration of the game. When Game is set to false, the game terminates.
             //that they can smell the wumpus,hear bats, detect slime or as in the case of blood, the wumpus is two rooms away.
-            for (int i = 0; i < LocationParameters[AgenteRoomNumber].exit.Length; i++)
+            if (LocationParameters[AgenteRoomNumber].brisa == true)
             {
-                if (LocationParameters[LocationParameters[AgenteRoomNumber].exit[i]].brisa == true)
-                {
-                    Console.WriteLine("Puedes sentir el viento");
-                }
-                if (LocationParameters[LocationParameters[AgenteRoomNumber].exit[i]].hedor == true)
-                {
-                    Console.WriteLine("Puedes percibir un hedor");
-                }
-                if (LocationParameters[LocationParameters[AgenteRoomNumber].exit[i]].brillo == true)
-                {
-                    Console.WriteLine("Puedes notar un brillo");
-                }
+                Console.WriteLine("Puedes sentir el viento");
+            }
+            if (LocationParameters[AgenteRoomNumber].hedor == true)
+            {
+                Console.WriteLine("Puedes percibir un hedor");
+            }
+            if (LocationParameters[AgenteRoomNumber].brillo == true)
+            {
+                Console.WriteLine("Puedes notar un brillo");
+            }
+            Console.WriteLine("Existen salidas:");
+
+            if (LocationParameters[AgenteRoomNumber].exit[0] < 0)
+            {
+                Console.Write("Arriba,");
+            }
+            if (LocationParameters[AgenteRoomNumber].exit[1] < 0)
+            {
+                Console.WriteLine("Izquierda,");
+            }
+            if (LocationParameters[AgenteRoomNumber].exit[2] < 0)
+            {
+                Console.WriteLine("Derecha,");
+            }
+            if (LocationParameters[AgenteRoomNumber].exit[3] < 0)
+            {
+                Console.WriteLine("Abajo");
             }
             //Pregunta el juegador que desa hacer. Preciona 1 y anter para moverse o 2 y enter para disparar flecha.
-
+            Console.WriteLine("Que te gustaria hacer?");
+            Console.WriteLine("Preciona 1 y return para moverte");
+            if (NroFlech > 0)
+            {
+                Console.WriteLine(" o precona 2 y return para disparar");
+            }
+            string s = Console.ReadLine();
+            if (s == "1")
+            {
+                //The hunter moves to a new room using a random selection of the three adjacent rooms.The first three if statements ascertain whether the room the
+                //hunter is now in has a pit, a wumpus or indeed a colony of bats.
+                AgenteRoomNumber = Clases.Extras.AsignacionRandimico(ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                LocationParameters[AgenteRoomNumber].agente = true;
+                if (LocationParameters[AgenteRoomNumber].hueco == true)
+                {
+                    Console.WriteLine("You have encountered a pit and a Wumpus, you are dead, Game Over");
+                    Game = false;
+                }
+                if (LocationParameters[AgenteRoomNumber].wumpus == true)
+                {
+                    Console.WriteLine("You have encountered a Wumpus, you are dead, Game Over");
+                    Game = false;
+                }
+                else if (s == "2" && NoArrows > 0)
+                {
+                    //If the Player chooses to allow the hunter to fire an arrow they execution follows the said fn. Please refer to this fn for clarification
+                    ShootArrows(ref NoArrows, CaveSystem, ref HunterRoomNumber, ref NoWumpi, ref BloodRoomsTier1, ref BloodRoomsTier2, ref Wumpus, ref Game);
+                }
+            }            
         }
     }
 }

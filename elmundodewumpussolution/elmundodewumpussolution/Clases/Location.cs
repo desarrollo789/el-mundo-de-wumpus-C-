@@ -13,6 +13,13 @@ namespace elmundodewumpussolution.Clases
     class Location
     {
         public int[] exit = new int[4];
+        public Location()
+        {
+            exit[0] = -100;
+            exit[1] = -100;
+            exit[2] = -100;
+            exit[3] = -100;
+        }        
 
         public Location(int a, int b, int c, int d)
         {
@@ -38,7 +45,7 @@ namespace elmundodewumpussolution.Clases
         public bool hueco = false;
         public bool slime = false;
         public bool bat = false;
-        public bool Hunter = false;
+        public bool agente = false;
         public bool wumpus = false;
         public bool hedor = false;
         public bool arrow = false;
