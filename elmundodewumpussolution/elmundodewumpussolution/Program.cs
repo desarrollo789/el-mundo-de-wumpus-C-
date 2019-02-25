@@ -10,6 +10,7 @@ namespace elmundodewumpussolution
     {
         //Please refer to the Cave class setup after class program. I now setup an array CaveSystem of objects of class Cave. the default id 36 rooms for easy.
         Clases.Location[] LocationParameters;
+        Clases.Extras Metodos;
         int MaxnrodeRooms;
         //Aqui es donde inicia el prgrama
         //Definiendo parametros
@@ -36,6 +37,7 @@ namespace elmundodewumpussolution
         public Program()
         {
             LocationParameters = new Clases.Location[MaxnrodeRooms];
+            Metodos = new Clases.Extras();
             MaxnrodeRooms = 36;
             Game = true;
             indexini = 0; indexend = 7;
@@ -51,6 +53,7 @@ namespace elmundodewumpussolution
             Wumpus = new int[1];
             Oro = new int[3];
         }
+
         public void RemoveWumpus(ref int[] Wumpus)
         {
             //Since  i am going to move the wumpus, i first turn the blood boolean to false in all the effected objects. I do this in the first for loop
@@ -65,8 +68,9 @@ namespace elmundodewumpussolution
                 {
                     LocationParameters[LocationParameters[Wumpus[i]].exit[q]].hedor = false;
                 }
-            }            
+            }
         }
+
         private void Main(string[] args)
         {                        
             Console.WriteLine("Bienvenido a WunpusGame, exiten tres niveles de dificultad: Estan Facil, Medio and Pesadilla;/n En Fasil existen 36 espacios, un Wumpus 'Si no sabes que es Wumpus es un monstruo' y una colonia de murcielagos; /n Medio son 28 espacios, un Wunpus y una colinia de murcielagos; /n En pesadilla son 16 espacios, un wumpus y una colonia de murcielagos; /n Los murcielagos son mas agrecivos a medida que se aumenta el nivel; /n Enter & return para medio matener p para pesadilla; default es Facil");
@@ -258,10 +262,10 @@ namespace elmundodewumpussolution
                     Console.WriteLine("You have encountered a Wumpus, you are dead, Game Over");
                     Game = false;
                 }
-                else if (s == "2" && NoArrows > 0)
+                else if (s == "2" && NroFlech > 0)
                 {
                     //If the Player chooses to allow the hunter to fire an arrow they execution follows the said fn. Please refer to this fn for clarification
-                    ShootArrows(ref NoArrows, CaveSystem, ref HunterRoomNumber, ref NoWumpi, ref BloodRoomsTier1, ref BloodRoomsTier2, ref Wumpus, ref Game);
+                    Metodos.ShootArrows(ref NroFlech, LocationParameters, ref AgenteRoomNumber, ref NroWump, ref BloodRoomsTier1, ref BloodRoomsTier2, ref Wumpus, ref Game);
                 }
             }            
         }

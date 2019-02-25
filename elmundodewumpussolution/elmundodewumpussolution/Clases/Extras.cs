@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace elmundodewumpussolution.Clases
 {
-    class Extras
+    public class Extras
     {
         public List<List<List<string>>> ListarReglas;
         public Program parametro;
         public Extras()
         {
             ListarReglas = new List<List<List<string>>>();
-            parametro = new Program();
+            parametro = new Program();           
         }
         public List<List<string>> Reduccion(List<List<string>> listainit, List<List<string>> listafinal)
         {
@@ -111,10 +111,7 @@ namespace elmundodewumpussolution.Clases
 
             } while (c == RoomNumberBats || c == Wumpus[0] || c == NumberRoomsPit[0] || c == NumberRoomsPit[1]);
             return c;
-        }
-
-        
-        
+        }        
 
         private void DirectionOfArrows(Location[] CaveSystem, ref int direccion, ref int NoWumpi, ref int[] Wumpus)
         {
@@ -144,7 +141,7 @@ namespace elmundodewumpussolution.Clases
         }
 
 
-        private void ShootArrows(ref int NroFlechas, Location[] CaveSystem, ref int HunterRoomNumber, ref int NoWumpi, ref int[] BloodRoomsTier1, ref int[] Hedor, ref int[] Wumpus, ref bool Game)
+        public void ShootArrows(ref int NroFlechas, Location[] CaveSystem, ref int HunterRoomNumber, ref int NoWumpi, ref int[] BloodRoomsTier1, ref int[] Hedor, ref int[] Wumpus, ref bool Game)
         {
             // This fn starts by decrementing the number of arrows and informing the player if their are none left. Then the player is asked for the direction
             // that the arrows will take. So i ask the player to enter the rooms that arrow should fire or proceed through. I let the player choose l,r or c for left,right

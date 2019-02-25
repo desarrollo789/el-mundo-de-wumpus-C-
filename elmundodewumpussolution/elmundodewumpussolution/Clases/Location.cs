@@ -10,7 +10,7 @@ namespace elmundodewumpussolution.Clases
     //of my rooms had only two rooms that they connected too in some instances. The exit array specifies the room numbers that each room connects to. Their purpose
     //will be shown once i return to main. Finally there is also a list of bolleans associated with each object: pit,slime,blood,wumpus,hunter, bat and arrow which indicates
     // if any these objects are in that cave or in anothe rwords associated with that cave then the boolean is turned to true.
-    class Location
+    public class Location
     {
         public int[] exit = new int[4];
         public Location()
