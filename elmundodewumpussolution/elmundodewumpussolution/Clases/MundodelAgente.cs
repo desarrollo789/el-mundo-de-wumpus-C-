@@ -14,6 +14,18 @@ namespace elmundodewumpussolution.Clases
         //bool [,] matriz4Do = new bool[3, 3];
         #endregion
         bool[,] matriz4Da = new bool[3, 3];
-
+        bool[] matrizdelAgente;
+        Clases.Location[] LocationParameters;
+        Clases.Extras Metodos;
+        int MaxnrodeRooms;
+        bool Game = true;
+        int indexini = 0; int indexend = 7;
+        int NroWump = 2;
+        int NroFlech = 2;
+        int a, b, c, d;
+        public MundodelAgente()
+        {
+            
+        }
     }
 }

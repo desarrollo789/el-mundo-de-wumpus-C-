@@ -75,7 +75,7 @@ namespace elmundodewumpussolution.Clases
             }
             return listainit;                                    
         }
-        public static int AsignacionRandimico(ref int a, ref int MaxNoOfRooms, ref int RoomNumberBats, ref int[] Wumpus, ref int[] NumberRoomsPit)
+        public static int AsignacionRandimico(ref int a, ref int MaxNoOfRooms, ref int[] Oro , ref int[] Wumpus, ref int[] NumberRoomsPit)
         {
             //Este metodo reduce la funcion                                          
             //This fn will return a room number using a random generator provided it does not equal any the argruments it is compared against. By way of reference it will
@@ -90,11 +90,11 @@ namespace elmundodewumpussolution.Clases
                 c = random.Next(0, MaxNoOfRooms);
 
 
-            } while (c == a || c == RoomNumberBats || c == Wumpus[0] || c == NumberRoomsPit[0] || c == NumberRoomsPit[1]);
+            } while (c == a || c == Oro[0] || c == Oro[1] || c == Oro[2] || c == Wumpus[0] || c == NumberRoomsPit[0] || c == NumberRoomsPit[1]);
             return c;
         }
 
-        public static int AsignacionRandimico(ref int MaxNoOfRooms, ref int RoomNumberBats, ref int[] Wumpus, ref int[] NumberRoomsPit)
+        public static int AsignacionRandimico(ref int MaxNoOfRooms, ref int[] Oro, ref int[] Wumpus, ref int[] NumberRoomsPit)
         {
             //Este metodo reduce la funcion                                          
             //This fn will return a room number using a random generator provided it does not equal any the argruments it is compared against. By way of reference it will
@@ -109,7 +109,7 @@ namespace elmundodewumpussolution.Clases
                 c = random.Next(0, MaxNoOfRooms);
                 
 
-            } while (c == RoomNumberBats || c == Wumpus[0] || c == NumberRoomsPit[0] || c == NumberRoomsPit[1]);
+            } while (c == Oro[0] || c == Oro[1] || c == Oro[2] || c == Wumpus[0] || c == NumberRoomsPit[0] || c == NumberRoomsPit[1]);
             return c;
         }        
 

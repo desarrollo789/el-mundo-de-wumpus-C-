@@ -43,8 +43,6 @@ namespace elmundodewumpussolution.Clases
 
         public bool brisa = false;
         public bool hueco = false;
-        public bool slime = false;
-        public bool bat = false;
         public bool agente = false;
         public bool wumpus = false;
         public bool hedor = false;

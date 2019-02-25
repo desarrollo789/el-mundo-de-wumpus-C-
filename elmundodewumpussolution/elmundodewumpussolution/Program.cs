@@ -21,8 +21,7 @@ namespace elmundodewumpussolution
         int a, b, c, d;
         //I initially place the hunter in room 6,HunterRoomNumber = 6; the bats in room 7. Please note i set the boolean for each object to true. So for room or cave 6
         //i reference that cave vis CaveSystem ans set the booleanHunter = true. Likewise for the bats. 
-        int AgenteRoomNumber;        
-        int MucielagosRoomNumeber;        
+        int AgenteRoomNumber;              
         //I use an array NumberRoomsPit = new int[2] which the contains the room numbers of the rooms with a pit in the game. BloodRoomsTier1 & 2 are arrays i set up
         //previously but are now reduntant.Wumpus is an array which contains the room numbers of the wumpi, however i only have one wumpus in the game as set out in
         //the spec; so i just use Wumpus[0]; however i set all the code and functions to use the array so i just left it as is.
@@ -61,7 +60,7 @@ namespace elmundodewumpussolution
 
             for (int i = 0; i < 1; i++)
             {
-                Wumpus[0] = Clases.Extras.AsignacionRandimico(ref AgenteRoomNumber, ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                Wumpus[0] = Clases.Extras.AsignacionRandimico(ref AgenteRoomNumber, ref MaxnrodeRooms, ref Oro, ref Wumpus, ref HuecoRoomsNumbers);
                 //CaveSystem[Wumpus[i]].wumpus = true;
                 LocationParameters[Wumpus[i]].wumpus = false;
                 for (int q = 0; q < (LocationParameters[Wumpus[i]].exit.Length); q++)
@@ -179,7 +178,7 @@ namespace elmundodewumpussolution
             //CaveSystem[CaveSystem[NumberRoomsPit[0]].exit[q]].slime = true;
             for (int i = 0; i < 3; i++)
             {
-                HuecoRoomsNumbers[i] = Clases.Extras.AsignacionRandimico(ref indexini, ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                HuecoRoomsNumbers[i] = Clases.Extras.AsignacionRandimico(ref indexini, ref MaxnrodeRooms, ref Oro, ref Wumpus, ref HuecoRoomsNumbers);
                 //NumberRoomsPit[0] = CaveSystem[HunterRoomNumber].exit[0];
                 LocationParameters[HuecoRoomsNumbers[i]].hueco = true;
                 for (int q = 0; q < (LocationParameters[HuecoRoomsNumbers[i]].exit.Length); q++)
@@ -189,7 +188,7 @@ namespace elmundodewumpussolution
             }
             for (int i = 0; i < 1; i++)
             {
-                Wumpus[0] = Clases.Extras.AsignacionRandimico(ref AgenteRoomNumber, ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                Wumpus[0] = Clases.Extras.AsignacionRandimico(ref AgenteRoomNumber, ref MaxnrodeRooms, ref Oro, ref Wumpus, ref HuecoRoomsNumbers);
                 //CaveSystem[Wumpus[i]].wumpus = true;
                 LocationParameters[Wumpus[i]].wumpus = true;
                 for (int q = 0; q < (LocationParameters[Wumpus[i]].exit.Length); q++)
@@ -199,7 +198,7 @@ namespace elmundodewumpussolution
             }
             for (int i = 0; i > 3; i++)
             {
-                Oro[i] = Clases.Extras.AsignacionRandimico(ref indexini, ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                Oro[i] = Clases.Extras.AsignacionRandimico(ref indexini, ref MaxnrodeRooms, ref Oro, ref Wumpus, ref HuecoRoomsNumbers);
                 LocationParameters[Oro[i]].brillo = true;
                 for (int q = 0; q < (LocationParameters[Oro[i]].exit.Length); q++)
                 {
@@ -250,7 +249,7 @@ namespace elmundodewumpussolution
             {
                 //The hunter moves to a new room using a random selection of the three adjacent rooms.The first three if statements ascertain whether the room the
                 //hunter is now in has a pit, a wumpus or indeed a colony of bats.
-                AgenteRoomNumber = Clases.Extras.AsignacionRandimico(ref MaxnrodeRooms, ref MucielagosRoomNumeber, ref Wumpus, ref HuecoRoomsNumbers);
+                AgenteRoomNumber = Clases.Extras.AsignacionRandimico(ref MaxnrodeRooms, ref Oro, ref Wumpus, ref HuecoRoomsNumbers);
                 LocationParameters[AgenteRoomNumber].agente = true;
                 if (LocationParameters[AgenteRoomNumber].hueco == true)
                 {
@@ -261,13 +260,14 @@ namespace elmundodewumpussolution
                 {
                     Console.WriteLine("You have encountered a Wumpus, you are dead, Game Over");
                     Game = false;
-                }
-                else if (s == "2" && NroFlech > 0)
-                {
-                    //If the Player chooses to allow the hunter to fire an arrow they execution follows the said fn. Please refer to this fn for clarification
-                    Metodos.ShootArrows(ref NroFlech, LocationParameters, ref AgenteRoomNumber, ref NroWump, ref BloodRoomsTier1, ref BloodRoomsTier2, ref Wumpus, ref Game);
-                }
-            }            
+                }                
+            }
+            else if (s == "2" && NroFlech > 0)
+            {
+                //If the Player chooses to allow the hunter to fire an arrow they execution follows the said fn. Please refer to this fn for clarification
+                Metodos.ShootArrows(ref NroFlech, LocationParameters, ref AgenteRoomNumber, ref NroWump, ref BloodRoomsTier1, ref BloodRoomsTier2, ref Wumpus, ref Game);
+            }
+            Console.WriteLine("Game Over");
         }
     }
 }
