@@ -12,33 +12,30 @@ namespace elmundodewumpussolution.Clases
     // if any these objects are in that cave or in anothe rwords associated with that cave then the boolean is turned to true.
     public class Location
     {
-        public int[] exit = new int[4];
+        public List<int> exit = new List<int>();
         public Location()
         {
-            exit[0] = -100;
-            exit[1] = -100;
-            exit[2] = -100;
-            exit[3] = -100;
+                    
         }        
 
         public Location(int a, int b, int c, int d)
         {
-            this.exit[0] = a;
-            this.exit[1] = b;
-            this.exit[2] = c;
-            this.exit[3] = d;
+            exit.Add(a);
+            exit.Add(b);
+            exit.Add(c);
+            exit.Add(d);
         }
         public Location(int a, int b, int c)
         {
-            this.exit[0] = a;
-            this.exit[1] = b;
-            this.exit[2] = c;
+            exit.Add(a);
+            exit.Add(b);
+            exit.Add(c);
 
         }
         public Location(int a, int b)
         {
-            this.exit[0] = a;
-            this.exit[1] = b;
+            exit.Add(a);
+            exit.Add(b);
         }
 
         public bool brisa = false;
@@ -48,5 +45,6 @@ namespace elmundodewumpussolution.Clases
         public bool hedor = false;
         public bool arrow = false;
         public bool brillo = false;
+        public bool oro = false;
     }
 }
